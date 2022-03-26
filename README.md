@@ -7,3 +7,6 @@ It is scaffolded with [Create React App](https://github.com/facebook/create-reac
 
 
 To run this project you need the graphql endpoint provided for the test [here](https://github.com/scandiweb/junior-react-endpoint).
+
+# Demo
+You can check a live demo [here](https://scandi-react-test.herokuapp.com/all)
