@@ -1,0 +1,40 @@
+.Categories {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+        padding-left: 100px;
+}
+
+.CategoryName {
+  font-family: Raleway;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0px;
+  text-align: center;
+  
+
+  height: 55px;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: none;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-left: 4px;
+  margin-right: 4px;
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    color: #5ECE7B;
+    border-bottom: 2px solid #5ECE7B;
+    cursor: pointer;
+  }
+
+  &_isSelected {
+    color: #5ECE7B;
+    border-bottom: 2px solid #5ECE7B;
+    font-weight: 400;
+
+  }
+}

@@ -1,0 +1,23 @@
+.ProductListPageContainer {
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    font-family: Raleway;
+    font-size: 42px;
+    font-weight: 400;
+    text-align: left;
+    margin-left: 100px;
+    margin-top: 40px;
+  }
+
+  .ProductsContainer {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+}
+

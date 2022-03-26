@@ -1,0 +1,99 @@
+.CartOverlayContainer { 
+    position: fixed;
+    z-index: 9999; 
+    top: 80px;
+    left: calc(100% - 340px);
+    //min-height: 540px;
+    height: auto;
+    width: 325px;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 10px;
+    h3 {
+        font-family: Raleway;
+        font-size: 16px;
+        font-weight: 500;
+        text-align: left;
+        b {
+            font-weight: 700;
+        }
+    }
+    .ProductsContainer {
+        display: flex;
+        align-items: stretch; 
+        max-height: 400px;
+        overflow-y: auto;
+        flex-direction: column;
+    }
+    .TotalContainer {
+        display: flex;
+        align-items: stretch; 
+        justify-content: space-between;
+        margin-bottom: 20px;
+        margin-top: 20px;       
+        h3 { 
+            font-family: Roboto;
+            font-size: 16px;
+            font-weight: 500;
+            text-align: left;
+
+        }
+        h4 { 
+            font-family: Raleway;
+            font-size: 16px;
+            font-weight: 700;
+            text-align: right;
+        }
+    }
+
+    .OverlayButtons { 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+        margin-bottom: 10px;      
+        .ViewbagButton {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 120%;
+            width: 140px;
+            height: 43px;
+            background: #FFFFFF;
+            border: 1px solid #1D1F22;
+            box-sizing: border-box;
+            color: #1D1F22;
+            margin-left: 6px;
+            margin-right: 6px;
+            text-decoration: none;
+        }
+    
+        .CheckoutButton {
+            align-items: center;
+            width: 140px;
+            height: 43px;
+            background: #5ECE7B;
+            color: #FFFFFF;
+            font-family: 'Raleway';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 120%;
+            margin-left: 6px;
+            margin-right: 6px;
+    
+        }
+    }
+}
+
+.OverlayShadow { 
+    position: fixed;
+    top: 80px;
+    left: 0;
+    height: calc(100% - 80px);
+    width: 100%;
+    background-color: rgba(57, 55, 72, 0.22);
+    z-index: 9000;
+}

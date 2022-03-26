@@ -1,0 +1,70 @@
+.DescriptionPageContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  align-content: normal;
+  column-gap: 60px;
+  margin-top: 60px;
+}
+
+.ProductInfoContainer {
+  max-width: 350px;
+}
+
+.AddToCartButtonContainer { 
+  display: flex;
+  justify-content: center;
+}
+
+.ProductName { 
+  &_Big {
+    font-family: Raleway, serif;
+    font-weight: 500;
+    font-style: normal;
+    text-align: left;
+    margin-bottom: 10px;
+    margin-top: 10px;
+ 
+  }
+ 
+}
+.ProductBrand { 
+    font-family: Raleway, serif;
+    font-weight: 300;
+    font-style: normal;
+    text-align: left;
+    margin: 0;
+}
+
+.DescriptionText {
+  font-family: Raleway, serif;
+  font-weight: 300;
+  margin: 0;
+}
+
+.AddToCartButton { 
+  background-color: #5ECE7B;
+  border: none;
+  color: white;
+  padding: 15px;
+  font-family: Raleway, serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  width: 100%;
+
+  &:hover {
+    background-color: #4fa866;
+    cursor: pointer;
+  }
+}
+
+.LoadingIcon {
+  position: fixed;
+  top: calc(50% - 75px);
+  left: calc(50% - 75px);
+}
