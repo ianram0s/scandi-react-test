@@ -21,5 +21,6 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'no-restricted-exports': 'off',
     'react/prop-types': 'off',
+    'linebreak-style': [2, 'windows'],
   },
 };
