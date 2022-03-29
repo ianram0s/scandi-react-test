@@ -5,7 +5,7 @@ export const getProductsList = async () => {
   const queryProductsList = new Query('categories', true)
     .addField('name')
     .addField(new Field('products', true)
-      .addFieldList(['id', 'name', 'category', 'inStock'])
+      .addFieldList(['id', 'name', 'category', 'brand', 'inStock'])
       .addField(new Field('gallery', true))
       .addField(new Field('prices', true)
         .addField('amount')
