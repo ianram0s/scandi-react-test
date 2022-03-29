@@ -60,8 +60,9 @@ class CartIconContainer extends PureComponent {
 
   renderBadge() {
     const { productsList } = this.props;
-    const amount = productsList.length;
-    if (amount > 0) {
+    if (productsList.length > 0) {
+      const amount = productsList.map((product) => product.amount)
+        .reduce((prev, acc) => prev + acc);
       if (amount > 9) {
         this.setState({ badgeText: '9+' });
       } else {
