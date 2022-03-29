@@ -12,30 +12,35 @@ class ProductCard extends PureComponent {
     const stockStyle = (productInfo.inStock) ? { opacity: '100%' } : { opacity: '50%' };
     console.log(productInfo);
     return (
-      <Link to={`../${productInfo.category}/${productInfo.id}`} className="Link">
-        <div className="ProductCardContainer" style={stockStyle}>
-          <div className="ImageContainer">
-            <img src={productInfo.gallery[0]} alt="" />
-            {!productInfo.inStock && <h2>OUT OF STOCK</h2>}
-          </div>
-          <h3>
-            {productInfo.brand}
-            {' '}
-            {productInfo.name}
-          </h3>
-          <h4>
-            {filteredPrice.currency.symbol}
-            {' '}
-            {filteredPrice.amount}
-          </h4>
-          {productInfo.inStock && (
+      <div className="MainContainer">
+        <div
+          className="AddToCartIcon"
+        >
           <AddCartIcon
-            onClick={() => { handleAddToCart(productInfo); }}
-            className="AddToCartIcon"
+            onClick={() => { if (productInfo.inStock) handleAddToCart(productInfo); }}
+            style={!productInfo.inStock ? { opacity: '0%' } : { }}
           />
-          )}
+
         </div>
-      </Link>
+        <Link to={`../${productInfo.category}/${productInfo.id}`} className="Link">
+          <div className="ProductCardContainer" style={stockStyle}>
+            <div className="ImageContainer">
+              <img src={productInfo.gallery[0]} alt="" />
+              {!productInfo.inStock && <h2>OUT OF STOCK</h2>}
+            </div>
+            <h3>
+              {productInfo.brand}
+              {' '}
+              {productInfo.name}
+            </h3>
+            <h4>
+              {filteredPrice.currency.symbol}
+              {' '}
+              {filteredPrice.amount}
+            </h4>
+          </div>
+        </Link>
+      </div>
 
     );
   }
