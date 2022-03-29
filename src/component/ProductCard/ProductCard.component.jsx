@@ -9,10 +9,9 @@ class ProductCard extends PureComponent {
     const filteredPrice = productInfo.prices.filter(
       (price) => price.currency.label === activeCurrency.label,
     )[0];
-    const stockStyle = (productInfo.inStock) ? { opacity: '100%', cursor: 'pointer' } : { opacity: '50%', cursor: 'default' };
-    const GoTo = (productInfo.inStock) ? `../${productInfo.category}/${productInfo.id}` : './';
+    const stockStyle = (productInfo.inStock) ? { opacity: '100%' } : { opacity: '50%' };
     return (
-      <Link to={GoTo} className="Link">
+      <Link to={`../${productInfo.category}/${productInfo.id}`} className="Link">
         <div className="ProductCardContainer" style={stockStyle}>
           <div className="ImageContainer">
             <img src={productInfo.gallery[0]} alt="" />
