@@ -10,7 +10,6 @@ class ProductCard extends PureComponent {
       (price) => price.currency.label === activeCurrency.label,
     )[0];
     const stockStyle = (productInfo.inStock) ? { opacity: '100%' } : { opacity: '50%' };
-    console.log(productInfo);
     return (
       <div className="MainContainer">
         <div

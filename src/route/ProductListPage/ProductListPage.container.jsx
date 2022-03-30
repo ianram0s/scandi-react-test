@@ -2,7 +2,6 @@ import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import ProductListPage from './ProductListPage.component';
 import { CategoryDispatcher } from '../../store/Category/Category.dispatcher';
-import { CurrencyDispatcher } from '../../store/Currency/Currency.dispatcher';
 import { ProductDispatcher } from '../../store/Product/Product.dispatcher';
 import ErrorPage from '../ErrorPage';
 
@@ -16,46 +15,43 @@ export const mapStateToProps = (state) => ({
 
 export const mapDispatchToProps = (dispatch) => ({
   updateCategoryData: () => CategoryDispatcher.updateCategoryData(dispatch),
-  updateProductsData: () => ProductDispatcher.updateProductsData(dispatch),
+  updateProductsData: (category) => ProductDispatcher.updateProductsData(dispatch, category),
   updateActiveCategory: (category) => CategoryDispatcher
     .updateActiveCategory(dispatch, category),
-  updateCurrenciesData: () => CurrencyDispatcher.updateCurrenciesData(dispatch),
   updateActiveProduct: (productid) => ProductDispatcher.updateActiveProduct(dispatch, productid),
 });
 
 class ProductListPageContainer extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = { loadingState: true };
+    this.state = { loadingState: true, loadingError: false };
   }
 
   async componentDidMount() {
     const {
-      categoryFromURL, updateCategoryData,
-      updateProductsData, updateCurrenciesData, updateActiveCategory,
+      categoryFromURL, updateProductsData,
+      updateActiveCategory, activeCategory,
     } = this.props;
-    await updateCategoryData();
-    await updateProductsData();
-    await updateCurrenciesData();
+    await updateProductsData(activeCategory || 'all')
+      .catch(() => { this.setState({ loadingError: true }); });
     updateActiveCategory(categoryFromURL);
-    this.setState({ loadingState: false });
+    this.setState({ loadingState: false, loadingError: false });
   }
 
   render() {
-    const { products, activeCategory } = this.props;
-    const { loadingState } = this.state;
-    if (activeCategory === false && activeCategory !== undefined) {
+    const {
+      products, activeCategory,
+    } = this.props;
+    const { loadingState, loadingError } = this.state;
+    if ((activeCategory === false && activeCategory !== undefined) || loadingError) {
       return (
         <ErrorPage />
       );
     }
-
-    const filteredProducts = products.filter((category) => category.name === activeCategory);
     const CapitalizeFirstLetter = ((str) => str.charAt(0).toUpperCase() + str.slice(1));
-
     return (
       <ProductListPage
-        productsList={filteredProducts}
+        productsList={products}
         category={CapitalizeFirstLetter(activeCategory)}
         loadingState={loadingState}
       />

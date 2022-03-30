@@ -1,12 +1,16 @@
-import { getProductsList, getProductInfo } from '../../query/Products.query';
+import { getProductInfo, getProductsList } from '../../query/Products.query';
 import {
   loadProducts, updateActiveProduct, updateSelectedAttributes, resetSelectedAttributes,
 } from './Product.action';
 
 export class ProductDispatcher {
-  static async updateProductsData(dispatch) {
-    const products = await getProductsList();
-    dispatch(loadProducts(products));
+  // eslint-disable-next-line no-unused-vars
+  static async updateProductsData(dispatch, category) {
+    const products = await getProductsList(category);
+    if (products !== null && products !== undefined) {
+      dispatch(loadProducts(products));
+    }
+    return products;
   }
 
   static async setActiveProduct(dispatch, productid) {

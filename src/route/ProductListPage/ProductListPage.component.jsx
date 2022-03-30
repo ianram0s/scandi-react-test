@@ -6,18 +6,16 @@ import { ReactComponent as LoadingIcon } from '../../style/assets/loading.svg';
 class ProductListPage extends PureComponent {
   render() {
     const { productsList, category, loadingState } = this.props;
-    const products = (() => (productsList.map((categories) => (
-      categories.products.map((product) => (
-        <ProductCardContainer key={product.name} product={product} />
-      ))
-    ))));
+    const products = productsList.map((product) => (
+      <ProductCardContainer key={product.name} product={product} />
+    ));
     return (
 
       <div className="ProductListPageContainer">
         <h2>{category}</h2>
         {!loadingState ? (
           <div className="ProductsContainer">
-            {products()}
+            {products}
           </div>
         ) : <LoadingIcon className="LoadingIcon" />}
 

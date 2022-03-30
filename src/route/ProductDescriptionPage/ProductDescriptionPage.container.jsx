@@ -28,12 +28,12 @@ class ProductDescriptionPageContainer extends PureComponent {
 
   async componentDidMount() {
     const {
-      categoryFromURL, productidFromURL, changeActiveProduct,
-      resetSelectedAttributes, updateActiveCategory,
+      productidFromURL, changeActiveProduct,
+      resetSelectedAttributes,
     } = this.props;
     resetSelectedAttributes();
     const validProduct = await changeActiveProduct(productidFromURL);
-    await updateActiveCategory(categoryFromURL);
+    // await updateActiveCategory(categoryFromURL);
     if (validProduct) {
       this.setState({ loadingError: false, loadingState: false });
     } else { this.setState({ loadingError: true, loadingState: false }); }

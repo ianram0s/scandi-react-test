@@ -2,7 +2,6 @@ import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { CategoryDispatcher } from '../../store/Category/Category.dispatcher';
 import { CurrencyDispatcher } from '../../store/Currency/Currency.dispatcher';
-import { ProductDispatcher } from '../../store/Product/Product.dispatcher';
 import Header from './Header.component';
 
 export const mapStateToProps = (state) => ({
@@ -13,7 +12,6 @@ export const mapStateToProps = (state) => ({
 export const mapDispatchToProps = (dispatch) => ({
   changeActiveCategory: (category) => CategoryDispatcher.updateActiveCategory(dispatch, category),
   updateCategoryData: () => CategoryDispatcher.updateCategoryData(dispatch),
-  updateProductsData: () => ProductDispatcher.updateProductsData(dispatch),
   updateCurrenciesData: () => CurrencyDispatcher.updateCurrenciesData(dispatch),
 });
 
@@ -24,9 +22,8 @@ class CategoriesContainer extends PureComponent {
   }
 
   async componentDidMount() {
-    const { updateCategoryData, updateProductsData, updateCurrenciesData } = this.props;
+    const { updateCategoryData, updateCurrenciesData } = this.props;
     await updateCategoryData();
-    await updateProductsData();
     await updateCurrenciesData();
     this.setState({ isLoading: false });
   }
