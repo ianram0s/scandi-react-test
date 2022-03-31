@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import ProductDescriptionPage from './ProductDescriptionPage.component';
 import { ProductDispatcher } from '../../store/Product/Product.dispatcher';
 import { CartDispatcher } from '../../store/Cart/Cart.dispatcher';
-import { CategoryDispatcher } from '../../store/Category/Category.dispatcher';
 import { ReactComponent as LoadingIcon } from '../../style/assets/loading.svg';
+import { QueryDispatcher } from '../../query/QueryDispatcher';
 import ErrorPage from '../ErrorPage';
 
 export const mapStateToProps = (state) => ({
@@ -13,11 +13,9 @@ export const mapStateToProps = (state) => ({
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  changeActiveProduct: (productid) => ProductDispatcher.setActiveProduct(dispatch, productid),
   resetSelectedAttributes: () => ProductDispatcher.resetSelectedAttributes(dispatch),
   addProductToCart: (product) => CartDispatcher.addProductToCart(dispatch, product),
-  updateActiveCategory: (category) => CategoryDispatcher
-    .updateActiveCategory(dispatch, category),
+  fetchProductData: (productid) => QueryDispatcher.fetchProductData(dispatch, productid),
 });
 class ProductDescriptionPageContainer extends PureComponent {
   constructor(props) {
@@ -28,11 +26,12 @@ class ProductDescriptionPageContainer extends PureComponent {
 
   async componentDidMount() {
     const {
-      productidFromURL, changeActiveProduct,
+      productidFromURL,
       resetSelectedAttributes,
+      fetchProductData,
     } = this.props;
     resetSelectedAttributes();
-    const validProduct = await changeActiveProduct(productidFromURL);
+    const validProduct = await fetchProductData(productidFromURL);
     // await updateActiveCategory(categoryFromURL);
     if (validProduct) {
       this.setState({ loadingError: false, loadingState: false });

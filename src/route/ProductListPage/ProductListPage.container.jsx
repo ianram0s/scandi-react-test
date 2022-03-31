@@ -14,11 +14,9 @@ export const mapStateToProps = (state) => ({
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  updateCategoryData: () => CategoryDispatcher.updateCategoryData(dispatch),
   updateProductsData: (category) => ProductDispatcher.updateProductsData(dispatch, category),
   updateActiveCategory: (category) => CategoryDispatcher
     .updateActiveCategory(dispatch, category),
-  updateActiveProduct: (productid) => ProductDispatcher.updateActiveProduct(dispatch, productid),
 });
 
 class ProductListPageContainer extends PureComponent {

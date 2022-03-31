@@ -1,7 +1,6 @@
 import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { CartDispatcher } from '../../store/Cart/Cart.dispatcher';
-import { ProductDispatcher } from '../../store/Product/Product.dispatcher';
 import ProductCard from './ProductCard.component';
 
 export const mapStateToProps = (state) => ({
@@ -10,7 +9,6 @@ export const mapStateToProps = (state) => ({
 
 export const mapDispatchToProps = (dispatch) => ({
   addProductToCart: (product) => CartDispatcher.addProductToCart(dispatch, product),
-  setActiveProduct: (product) => ProductDispatcher.setActiveProduct(dispatch, product),
 });
 
 class ProductCardContainer extends PureComponent {
@@ -20,9 +18,8 @@ class ProductCardContainer extends PureComponent {
   }
 
   async handleAddToCart(product) {
-    const { addProductToCart, setActiveProduct } = this.props;
-    const productFull = await setActiveProduct(product.id);
-    addProductToCart(productFull);
+    const { addProductToCart } = this.props;
+    addProductToCart(product);
   }
 
   render() {

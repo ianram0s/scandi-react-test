@@ -1,7 +1,8 @@
 import { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { CategoryDispatcher } from '../../store/Category/Category.dispatcher';
-import { CurrencyDispatcher } from '../../store/Currency/Currency.dispatcher';
+import { QueryDispatcher } from '../../query/QueryDispatcher';
+// import { CategoryDispatcher } from '../../store/Category/Category.dispatcher';
+// import { CurrencyDispatcher } from '../../store/Currency/Currency.dispatcher';
 import Header from './Header.component';
 
 export const mapStateToProps = (state) => ({
@@ -10,9 +11,10 @@ export const mapStateToProps = (state) => ({
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  changeActiveCategory: (category) => CategoryDispatcher.updateActiveCategory(dispatch, category),
-  updateCategoryData: () => CategoryDispatcher.updateCategoryData(dispatch),
-  updateCurrenciesData: () => CurrencyDispatcher.updateCurrenciesData(dispatch),
+  fetchInitialData: () => QueryDispatcher.fetchInitialData(dispatch),
+// changeActiveCategory: (category) => CategoryDispatcher.updateActiveCategory(dispatch, category),
+  // updateCategoryData: () => CategoryDispatcher.updateCategoryData(dispatch),
+  // updateCurrenciesData: () => CurrencyDispatcher.updateCurrenciesData(dispatch),
 });
 
 class CategoriesContainer extends PureComponent {
@@ -22,9 +24,8 @@ class CategoriesContainer extends PureComponent {
   }
 
   async componentDidMount() {
-    const { updateCategoryData, updateCurrenciesData } = this.props;
-    await updateCategoryData();
-    await updateCurrenciesData();
+    const { fetchInitialData } = this.props;
+    await fetchInitialData();
     this.setState({ isLoading: false });
   }
 

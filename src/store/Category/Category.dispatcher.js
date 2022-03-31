@@ -1,9 +1,7 @@
-import getCategoriesList from '../../query/Category.query';
 import { loadCategories, updateActiveCategory } from './Category.action';
 
 export class CategoryDispatcher {
-  static async updateCategoryData(dispatch) {
-    const categories = await getCategoriesList();
+  static async updateCategoryData(dispatch, categories) {
     dispatch(loadCategories(categories));
   }
 
