@@ -21,6 +21,8 @@
 }
 
 .BigImageContainer{
+  max-width: 500px;
+  max-height: 610px;
   position: relative;
   display: flex;
   flex-grow: 5;
