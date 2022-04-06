@@ -13,7 +13,7 @@ class ProductListPage extends PureComponent {
 
       <div className="ProductListPageContainer">
         <h2>{category}</h2>
-        {!loadingState ? (
+        {!loadingState && category !== undefined ? (
           <div className="ProductsContainer">
             {products}
           </div>

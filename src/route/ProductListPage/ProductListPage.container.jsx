@@ -41,16 +41,17 @@ class ProductListPageContainer extends PureComponent {
       products, activeCategory,
     } = this.props;
     const { loadingState, loadingError } = this.state;
-    if (activeCategory === false || activeCategory === undefined || loadingError) {
+    if (loadingError || activeCategory === false) {
       return (
         <ErrorPage />
       );
     }
     const CapitalizeFirstLetter = ((str) => str.charAt(0).toUpperCase() + str.slice(1));
+    const category = activeCategory ? CapitalizeFirstLetter(activeCategory) : activeCategory;
     return (
       <ProductListPage
         productsList={products}
-        category={CapitalizeFirstLetter(activeCategory)}
+        category={category}
         loadingState={loadingState}
       />
     );
