@@ -2,8 +2,8 @@ import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import ProductListPage from './ProductListPage.component';
 import { CategoryDispatcher } from '../../store/Category/Category.dispatcher';
-import { ProductDispatcher } from '../../store/Product/Product.dispatcher';
 import ErrorPage from '../ErrorPage';
+import { QueryDispatcher } from '../../query/QueryDispatcher';
 
 export const mapStateToProps = (state) => ({
   activeCategory: state.CategoryReducer.activeCategory,
@@ -14,7 +14,7 @@ export const mapStateToProps = (state) => ({
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  updateProductsData: (category) => ProductDispatcher.updateProductsData(dispatch, category),
+  fetchProductListData: (category) => QueryDispatcher.fetchProductListData(dispatch, category),
   updateActiveCategory: (category) => CategoryDispatcher
     .updateActiveCategory(dispatch, category),
 });
@@ -27,11 +27,13 @@ class ProductListPageContainer extends PureComponent {
 
   async componentDidMount() {
     const {
-      categoryFromURL, updateProductsData,
-      updateActiveCategory, activeCategory,
+      categoryFromURL, fetchProductListData,
+      updateActiveCategory,
     } = this.props;
-    await updateProductsData(activeCategory || 'all')
+
+    await fetchProductListData(categoryFromURL || 'all')
       .catch(() => { this.setState({ loadingError: true }); });
+
     updateActiveCategory(categoryFromURL);
     this.setState({ loadingState: false, loadingError: false });
   }
@@ -40,6 +42,7 @@ class ProductListPageContainer extends PureComponent {
     const {
       products, activeCategory,
     } = this.props;
+
     const { loadingState, loadingError } = this.state;
     if ((activeCategory === false && activeCategory !== undefined) || loadingError) {
       return (
