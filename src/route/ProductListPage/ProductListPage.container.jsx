@@ -44,7 +44,7 @@ class ProductListPageContainer extends PureComponent {
     } = this.props;
 
     const { loadingState, loadingError } = this.state;
-    if ((activeCategory === false && activeCategory !== undefined) || loadingError) {
+    if (activeCategory === false || activeCategory !== undefined || loadingError) {
       return (
         <ErrorPage />
       );
