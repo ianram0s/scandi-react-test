@@ -32,7 +32,7 @@ class ProductDescriptionPageContainer extends PureComponent {
     } = this.props;
     resetSelectedAttributes();
     const validProduct = await fetchProductData(productidFromURL);
-    // await updateActiveCategory(categoryFromURL);
+
     if (validProduct) {
       this.setState({ loadingError: false, loadingState: false });
     } else { this.setState({ loadingError: true, loadingState: false }); }

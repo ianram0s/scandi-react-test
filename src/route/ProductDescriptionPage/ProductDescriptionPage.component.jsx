@@ -17,7 +17,7 @@ class ProductDescriptionPage extends PureComponent {
     )[0];
     return (
       <div className="DescriptionPageContainer">
-        <ImageGalleryContainer availableImages={availableImages} />
+        <ImageGalleryContainer availableImages={availableImages} inStock={activeProduct.inStock} />
         <div className="ProductInfoContainer">
           <h1 className="ProductName_Big">{activeProduct.name}</h1>
           <h1 className="ProductBrand">{activeProduct.brand}</h1>

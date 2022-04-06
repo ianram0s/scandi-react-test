@@ -21,12 +21,13 @@ class ImageGalleryContainer extends PureComponent {
 
   render() {
     const { selectedImage } = this.state;
-    const { availableImages } = this.props;
+    const { availableImages, inStock } = this.props;
     return (
       <ImageGallery
         selectedImage={selectedImage || availableImages[0]}
         gallery={availableImages}
         setActiveImage={this.setActiveImage}
+        inStock={inStock}
       />
     );
   }

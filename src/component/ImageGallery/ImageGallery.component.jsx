@@ -24,14 +24,16 @@ class ImageGallery extends PureComponent {
   }
 
   render() {
-    const { selectedImage } = this.props;
+    const { selectedImage, inStock } = this.props;
+    const stockStyle = (inStock) ? { opacity: '100%' } : { opacity: '50%' };
     return (
       <div className="ImageAndGalleryWrapper">
         <div className="GalleryContainer">
           {this.renderGallery()}
         </div>
-        <div className="BigImageContainer">
+        <div className="BigImageContainer" style={stockStyle}>
           <img className="BigImage" src={selectedImage} alt="" />
+          {!inStock && <h2>OUT OF STOCK</h2>}
         </div>
       </div>
     );
