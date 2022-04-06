@@ -30,11 +30,9 @@ class ProductListPageContainer extends PureComponent {
       categoryFromURL, fetchProductListData,
       updateActiveCategory,
     } = this.props;
-
     await fetchProductListData(categoryFromURL || 'all')
-      .catch(() => { this.setState({ loadingError: true }); });
-
-    updateActiveCategory(categoryFromURL);
+      .catch(() => { this.setState({ loadingError: true }); })
+      .finally(() => { updateActiveCategory(categoryFromURL); });
     this.setState({ loadingState: false, loadingError: false });
   }
 
@@ -42,9 +40,8 @@ class ProductListPageContainer extends PureComponent {
     const {
       products, activeCategory,
     } = this.props;
-
     const { loadingState, loadingError } = this.state;
-    if (activeCategory === false || activeCategory !== undefined || loadingError) {
+    if (activeCategory === false || activeCategory === undefined || loadingError) {
       return (
         <ErrorPage />
       );
