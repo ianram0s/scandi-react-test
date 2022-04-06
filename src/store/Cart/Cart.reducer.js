@@ -44,6 +44,7 @@ const SanitizeProduct = (product) => {
 const CartReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_PRODUCT: {
+      if (!action.product.inStock) return { ...state };
       const sanitizedProduct = SanitizeProduct(action.product);
       // Make sure all attributes have one item selected.
       const cartItemID = GenerateCartItemID(sanitizedProduct);
