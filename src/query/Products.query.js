@@ -1,12 +1,11 @@
-import { client, Query, Field } from '@tilework/opus';
+import { Query, Field } from '@tilework/opus';
 
-export const getProductsList = async (category) => {
-  client.setEndpoint(process.env.REACT_APP_GRAPHQL_ENDPOINT);
+export const getProductsListQuery = (category) => {
   const queryProductsList = new Query('category', true)
     .addArgument('input', 'CategoryInput!', { title: category })
     .addField('name')
     .addField(new Field('products', true)
-      .addFieldList(['id', 'name', 'brand', 'inStock'])
+      .addFieldList(['id', 'name', 'brand', 'category', 'inStock'])
       .addField(new Field('attributes', true)
         .addFieldList(['name', 'type'])
         .addField(new Field('items', true)
@@ -16,9 +15,7 @@ export const getProductsList = async (category) => {
         .addField('amount')
         .addField(new Field('currency', true)
           .addFieldList(['label', 'symbol']))));
-
-  const fetchedData = await client.post(queryProductsList);
-  return fetchedData.category.products;
+  return queryProductsList;
 };
 
 export const productQuery = (productid) => new Query('product', true)
@@ -33,9 +30,3 @@ export const productQuery = (productid) => new Query('product', true)
     .addField(new Field('currency', true)
       .addFieldList(['label', 'symbol'])))
   .addArgument('id', 'String!', productid);
-
-/* export const getProductInfo = async (productid) => {
-  client.setEndpoint(process.env.REACT_APP_GRAPHQL_ENDPOINT);
-  const fetchedData = await client.post(productQuery(productid));
-  return fetchedData.product;
-}; */

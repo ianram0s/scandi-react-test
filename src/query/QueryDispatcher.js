@@ -4,7 +4,7 @@ import { CurrencyDispatcher } from '../store/Currency/Currency.dispatcher';
 import { ProductDispatcher } from '../store/Product/Product.dispatcher';
 import { categoriesListQuery } from './Category.query';
 import { currencyQuery } from './Currency.query';
-import { productQuery } from './Products.query';
+import { getProductsListQuery, productQuery } from './Products.query';
 
 export class QueryDispatcher {
   constructor() {
@@ -32,6 +32,16 @@ export class QueryDispatcher {
     }
     ProductDispatcher.setActiveProduct(dispatch, data.product);
     return data;
+  }
+
+  static async fetchProductListData(dispatch, categoryID) {
+    if (!categoryID) return false;
+    const queryList = [getProductsListQuery(categoryID.toLowerCase())];
+    const data = await this.fetchData(queryList);
+    if (data.category.products) {
+      ProductDispatcher.updateProductsData(dispatch, data.category.products);
+    }
+    return data.category.products;
   }
 
   static async fetchData(queryList) {

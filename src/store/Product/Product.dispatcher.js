@@ -1,16 +1,11 @@
-import { getProductsList } from '../../query/Products.query';
 import {
   loadProducts, updateActiveProduct, updateSelectedAttributes, resetSelectedAttributes,
 } from './Product.action';
 
 export class ProductDispatcher {
   // eslint-disable-next-line no-unused-vars
-  static async updateProductsData(dispatch, category) {
-    const products = await getProductsList(category);
-    if (products !== null && products !== undefined) {
-      dispatch(loadProducts(products));
-    }
-    return products;
+  static async updateProductsData(dispatch, products) {
+    dispatch(loadProducts(products));
   }
 
   static setActiveProduct(dispatch, product) {
